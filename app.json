@@ -19,10 +19,12 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bhack.blt2"
+      "bundleIdentifier": "com.bhack.blt2",
+      "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.blt2.DoneWithIt"
+      "package": "com.blt2.DoneWithIt",
+      "versionCode": 1
     }
   }
 }
