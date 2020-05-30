@@ -22,7 +22,7 @@
       "bundleIdentifier": "com.bhack.blt2"
     },
     "android": {
-      "package": "DoneWithIt"
+      "package": "com.blt2.DoneWithIt"
     }
   }
 }
