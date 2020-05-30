@@ -20,6 +20,9 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.bhack.blt2"
+    },
+    "android": {
+      "package": "DoneWithIt"
     }
   }
 }
