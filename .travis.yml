@@ -106,7 +106,7 @@ jobs:
         - export PATH="$HOME/.yarn/bin:$PATH"
       install:
         - python3 -m pip install --user awscli
-        - export PATH=/Users/travis/Library/Python/2.7/bin:$PATH
+        - export PATH=/Users/travis/Library/Python/3.7/bin:$PATH
         - yarn global add turtle-cli@$TURTLE_VERSION
       script:
         - yarn
