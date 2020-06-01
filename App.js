@@ -1,57 +1,87 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Image,
-  SafeAreaView,
-  Button,
-} from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+// import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import AppIntroSlider from 'react-native-app-intro-slider';
+import Welcome from './screens/Welcome'
+import Login from './screens/Login';
+import Color from './constants/color';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+// temporary
+var isLoggedIn = false;
+
+const slides = [
+  {
+    key: '1',
+    title: 'First Slide',
+    text: "Here's the first slide."
+  },
+  {
+    key: '2',
+    title: 'Second Slide',
+    text: "Here's the 2nd slide."
+  },
+  {
+    key: '3',
+    title: 'Slide Three',
+    text: "Here's the third slide."
+  }
+]
 
 export default function App() {
-  const handlePress = () => console.log("Text pressed");
-  return (
-    // use SafeAreaView instead of View to deal with notch
-    <SafeAreaView style={styles.container}>
-      <Text onPress={handlePress}>Hello to React Native!</Text>
-      {/* require() bundle the image together with app, increase build size*/}
-      {/* <Image source={require("./assets/icon.png")} /> */}
-      {/* no feedback to user when touched */}
-      {/* <TouchableWithoutFeedback onPress={() => console.log("Image tapped")}>
-        <Image
-          source={{
-            width: 200, //require dimension for web images
-            height: 300,
-            uri: "https://picsum.photos/200/300",
-          }}
-        />
-      </TouchableWithoutFeedback> */}
-      <TouchableHighlight onPress={() => console.log("Image tapped")}>
-        <Image
-          source={{
-            width: 200, //require dimension for web images
-            height: 300,
-            uri: "https://picsum.photos/200/300",
-          }}
-        />
-      </TouchableHighlight>
-      {/* on iOS is a text button change text color, but Android is a rectangle button so color change background color*/}
-      <Button
-        color="orange"
-        title="Click me!"
-        onPress={() => console.log("button pressed")}
-      />
-    </SafeAreaView>
-  );
+
+  const [showRealApp, setShowRealApp] = useState(false);
+
+  const renderSlide = ({ item }) => {
+
+    return (
+      <View style={styles.slide}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.desc}>{item.text}</Text>
+      </View>
+    )
+  }
+
+  const onFinish = () => {
+    setShowRealApp(true);
+  }
+
+  const Stack = createStackNavigator();
+
+  const MainStack = () => {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Welcome" component={Welcome} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
+
+  if (showRealApp) {
+    return <MainStack />;
+  } else {
+    return <AppIntroSlider renderItem={renderSlide} data={slides} onDone={onFinish} />;
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  slide: {
     flex: 1,
-    backgroundColor: "dodgerblue",
-    // needed for text to be at center, or notch can block the text
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: Color.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  title: {
+    fontSize: 20,
+  },
+  desc: {
+    fontSize: 15
+  },
+
+
+
 });
+
