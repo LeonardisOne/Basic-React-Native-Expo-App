@@ -5,7 +5,7 @@
     "name": "DoneWithIt",
     "slug": "DoneWithIt",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +24,7 @@
     },
     "android": {
       "package": "com.blt2.DoneWithIt",
-      "versionCode": 1.0
+      "versionCode": 2
     },
     "description": "Basic React Native app with Expo"
   }
